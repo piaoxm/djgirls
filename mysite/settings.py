@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '3ic4lgil4)(e1#xlo0$f2wie0!wdb5u0vfsto#wq3r2u=@(awi'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True # 배포시 수정할 것
+DEBUG = False # 배포시 수정할 것
 
-ALLOWED_HOSTS = ['127.0.0.1','pythonanywhere.com'] # 배포시 수정할 것 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '.pythonanywhere.com','piaoxm.pythonanywhere.com'] # 배포시 수정할 것 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
 
 # Application definition
