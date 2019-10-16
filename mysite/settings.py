@@ -104,7 +104,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko'
+#관리자 화면을 한국어로 변경하길 원할 경우 'settings.py'중 LANGUAGE_CODE = 'en-us'를 LANGUAGE_CODE = 'ko'로 바꾸세요.
 
 TIME_ZONE = 'Asia/Seoul'
 
