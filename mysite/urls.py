@@ -17,7 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),#보안을 위해 admin은 다른것으로 수정하여 배포
     path('blog/', include('blog.urls')),
 ]
+
+# debug_toolbar 추가
+from django.conf import settings
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ]
 
