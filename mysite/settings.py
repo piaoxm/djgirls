@@ -60,7 +60,10 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [], # 파일시스템 템플릿 로더(File system Template Loader)
-        'APP_DIRS': True,
+        'DIRS': [os.path.join(BASE_DIR, 'mysite', 'templates')],# DIRS는 Django 템플릿을 로드 할 때 검사 할 파일 시스템 디렉토리 목록입니다. 바로 검색 경로입니다.
+        #프로젝트 디렉토리 (manage.py를 포함하고있는)에 templates 디렉토리를 만들어 쓰는 경우.
+        # 'DIRS': [] 라면 APP_DIRS 설정이 True로 설정되어 있기 때문에 Django는 각 어플리케이션(admin도 어플리케이션) 패키지 내에서 templates/ 서브 디렉토리를 자동으로 찾아서 대체
+        'APP_DIRS': True,#  true : 각 INSTALLED_APPS 디렉토리의 "templates" 하위 디렉토리를 탐색함.
         'OPTIONS': {
             'context_processors': [ # View에서 Template으로 넘어갈때 항상 실행하는 것. View에서 매번 넘겨주지 않아도 자동 실행하여 넘겨주도록 함.
                 'django.template.context_processors.debug',
@@ -108,10 +111,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'ko'
-#관리자 화면을 한국어로 변경하길 원할 경우 'settings.py'중 LANGUAGE_CODE = 'en-us'를 LANGUAGE_CODE = 'ko'로 바꾸세요.
+LANGUAGE_CODE = 'ko-kr'
+#관리자 화면을 한국어로 변경하길 원할 경우 # 장고의 언어를 한글'ko-kr'로 변경   / 디폴트 영어 'en-us'
 
-TIME_ZONE = 'Asia/Seoul'
+TIME_ZONE = 'Asia/Seoul'# 한국 시간 'Asia/Seoul' 으로 변경 검토 / 디폴트 'UTC'
 
 USE_I18N = True
 
@@ -123,8 +126,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# runserver는 STATIC_URL과 STATICFILES_DIRS를 통해 정적 파일을 탐색한다.
+STATIC_URL = '/static/' #각 앱단위 static 파일에 대한 URL Prefix / 템플릿 태그 {% static “경로” %} 에 의해서 참조되는 설정
+#STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),] # 프로젝트 단위 (File System Loader 에의해 참조되는 경로)
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'mysite', 'static'),]  # 프로젝트폴더 내에 위치할 경우
+
+STATIC_ROOT = os.path.join(BASE_DIR, '.static_root')# collectstatic 명령을 실행시 STATIC_ROOT에 등록된 디렉토리에 복사된다
+
+# 첨부파일 등을 위한 세팅 추가!
+MEDIA_URL = '/media/' # 항상 / 로 끝나도록 설정
+# 업로드된 파일을 저장할 디렉토리 경로
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
 
 #Debug_Toolbar 실행은 localhost 에서만
 INTERNAL_IPS = ['127.0.0.1',]

@@ -1,4 +1,7 @@
 {% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %} Blog - POST 목록 {% endblock %}
 
 {% block content %}
     {% for post in posts %}
@@ -8,6 +11,9 @@
             </div>
             <h1><a href="{% url 'blog:post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
             <p>{{ post.text|linebreaksbr }}</p>
+            
+            <!--# 승인된 댓글의 개수만 보이게 하기위해-->
+            <a href="{% url 'blog:post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
         </div>
     {% endfor %}
 {% endblock %}
