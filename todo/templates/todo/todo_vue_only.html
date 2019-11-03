@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue-Django ToDo App</title>
+
+    <style>
+        body {
+            text-align: center;
+            background-color: #ddd;
+        }
+        .inputBox {
+            margin: auto;
+            width: 70%;
+            background: white;
+            height: 50px;
+            border-radius: 50px;
+            line-height: 50px;
+        }
+        .inputBox .name {
+            border-style: none;
+            border-bottom: 1px solid #ddd;
+            width: 70px;
+            padding-left: 20px;
+        }
+        .inputBox .item {
+            border-style: none;
+            border-bottom: 1px solid #ddd;
+            width: 400px;
+            margin-left: 50px;
+            padding-left: 20px;
+        }
+        .todoList {
+            list-style: none;
+            padding: 10px 0;
+            text-align: left;
+        }
+        .todoList li {
+            display: flex;
+            height: 50px;
+            line-height: 50px;
+            margin: 0.5rem 0;
+            padding: 0 0.9rem;
+            background: white;
+            border-radius: 5px;
+        }
+        .removeBtn {
+            margin-left: auto;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='app'>
+
+        <h1>My Todo App !</h1>
+        <strong>서로 할 일이나 의견을 공유해 봅시다.</strong>
+        <br>
+
+        <div class="inputBox">
+            <input class="name" type="text" placeholder="name ..." v-model="name"> <!--name변수를 v-model로 바인딩--><!-- newTodoItem을 바인딩 -->
+            <input class="item" type="text" placeholder="type anything welcomed ..."
+                   v-model="newTodoItem" v-on:keyup.enter="add_todo()">
+            <button v-on:click="add_todo()">ADD</button>
+        </div>
+    
+        <ul class="todoList">
+            <li v-for="(todo, index) in todoItems">
+                <span>[[ todo.name ]]:: [[ todo.item ]]</span> <!-- Django와 같이 data를 꺼내온다. -->
+                <span class="removeBtn" v-on:click="remove_todo(index)">&#x00D7</span> <!-- remove_todo(index) 여기서 index는 글 번호를 말한다.-->
+            </li>
+        </ul>
+
+    </div>
+
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app', // vue인스턴스를 적용할 element를 지정을하고, 56번 째 Line
+            delimiters: ['[[', ']]'],
+            data: {
+                name: '',
+                newTodoItem: '',
+                todoItems:[
+                    {name: '김석훈', item: 'Django와 Vue.js 연동 프로그램을 만들고 있습니다.'}, // Python 의 객체와 같은 역할 70 Line
+                    {name: '홍길동', item: '이름을 안쓰면 홍길동으로 나와요...'},
+                    {name: '이순신', item: '신에게는 아직 열두 척의 배가 있사옵니다.'},
+                    {name: '성춘향', item: '그네타기'},
+                ],
+            }, // DOM 엘리먼트에서 사용할 데이터를 지정을 한다. todoItems:[ ] 라는 어레이에 값을 넣는다.
+            methods: {
+                add_todo: function() {
+                    console.log("add_todo()...");
+                    if (this.name == '') this.name = '홍길동'; // name이 입력이 되어있지 않으면 '홍길동' 을 this.name으로 설정
+                    if (this.newTodoItem == '') return; // newTodoItem이 입력되어있지 않으면 return
+                    this.todoItems.push({name: this.name, item: this.newTodoItem}); // 데이터 옵션에서 정의한 변수들인데
+                    // 이 변수들에는 현재 값이 없다, 사용자가 입력한 데이터를 넣기 위해서는 input 태그와 데이터바인딩을 해줘야한다.
+                    this.name = ''; // push(ADD) 를 누른 이후에 입력창 clear
+                    this.newTodoItem = '';  // push(ADD) 를 누른 이후에 입력창 clear
+                },
+                remove_todo: function(index) { // index를 인자를 넣어준다.
+                    console.log("remove_todo()...");
+                    this.todoItems.splice(index,1); // splice 함수 사용 index에서 한 개
+                },
+            },
+        })
+    </script>
+
+</body>
+</html>

@@ -27,6 +27,7 @@ DEBUG = True # 배포시 수정할 것
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '.pythonanywhere.com','piaoxm.pythonanywhere.com'] # 배포시 수정할 것 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
+LOGIN_REDIRECT_URL = '/' # 로그인후 자동으로 갈 경로
 
 # Application definition
 
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'debug_toolbar',#Debug_Toolbar
 
     'blog',
+    'todo',
 ]
 
 MIDDLEWARE = [
@@ -140,4 +142,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
 
 #Debug_Toolbar 실행은 localhost 에서만
 INTERNAL_IPS = ['127.0.0.1',]
+
 
