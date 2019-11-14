@@ -1,31 +1,35 @@
 <!doctype html>
 <html lang="ko">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Django Todo with Vue.js{% endblock %}</title>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 도움되는 콘솔 경고를 포함한 개발 버전 -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 상용버전, 속도와 용량이 최적화됨. -->
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/todomvc-app-css@2.0.6/index.css">
 </head>
-<body>
-<section class="todoapp">
-    <header class="header">
-        <h1>todos</h1>
-        <input type="text" class="new-todo" 
-               autofocus autocomplete="off"
-        placeholder="What needs to be done?"
-        v-model="newTodo"
-        @keyup.enter=addTodo">
-    </header>
-    {% block content %}
-    {% endblock %}
-</section>
-<footer class="info">
-    <p>todo</p>
-</footer>
 
-{% block extra_script_footer %}
-{% endblock %}
+<body>
+    <section class="todoapp">
+        <header class="header">
+            <h1>todos</h1>
+            <input type="text" class="new-todo" autofocus autocomplete="off" placeholder="What needs to be done?"
+                v-model="newTodo" @keyup.enter="addTodo">
+        </header>
+        {% block content %}
+        {% endblock %}
+    </section>
+    <footer class="info">
+        <p>todo</p>
+    </footer>
+
+    {% block extra_script_footer %}
+    {% endblock %}
 </body>
+
 </html>

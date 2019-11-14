@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.http import JsonResponse
-from todo.models import Todo
+from .models import Todo
 
 def index(request):
     return render(request, 'todo/list.html')
@@ -17,8 +17,10 @@ def todo_fetch(request): # 목록 불러오기
 
     return JsonResponse(todo_list, safe=False)
 
+#######################################
 import json
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 from .forms import TodoForm
 
 #save/ 로 접근하면 비어있는 사전형 데이터 하나만 나온다. todo_save 뷰는 POST 메서드로 데이터를 전송해야만 제대로 기능을 하기 때문입니다.
@@ -37,9 +39,7 @@ from .forms import TodoForm
 #     return JsonResponse({})
 
 #이런 비어있는 뷰를 보여주기 싫고 POST 멧더르르 사용했을 때만 뷰가 동작하도록 하고 싶다면 데코레이터를 이용해서 제약 조건을 만들 수 있습니다.
-from django.views.decorators.http import require_POST
 
-from .forms import TodoForm
 @csrf_exempt
 @require_POST # POST 메서드로 접근했을 때만 동작
 def todo_save(request):

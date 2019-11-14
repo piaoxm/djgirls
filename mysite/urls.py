@@ -40,7 +40,6 @@ urlpatterns = [
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
 # debug_toolbar 추가
-from django.conf import settings
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns += [
