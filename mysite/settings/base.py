@@ -12,14 +12,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = '3ic4lgil4)(e1#xlo0$f2wie0!wdb5u0vfsto#wq3r2u=@(awi'
+# SECRET_KEY = '123456789'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True  # 배포시 수정할 것
 
-# 배포시 수정할 것 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
-# ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]',
-                #  '.pythonanywhere.com', 'piaoxm.pythonanywhere.com']
+# 배포시 수정할 것
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
 
 #로그인관련 Redirect
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
@@ -43,6 +42,7 @@ INSTALLED_APPS = [
     # 'debug_toolbar',  # Debug_Toolbar
 
     'blog',
+    'bookmark',
     'todo',
     'testapp',
     'member',

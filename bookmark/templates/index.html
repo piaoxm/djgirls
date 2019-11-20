@@ -1,0 +1,24 @@
+{% extends 'bookmark\base.html' %}
+
+{% block title %} index  {% endblock %}
+
+
+{% block content %} 
+ 
+ Home 페이지!!
+
+ <br> View 에서 넘겨받은 값
+
+ {{message}}
+<br><br>
+
+<form action ="" method="post">
+        {% csrf_token %}
+        {{ form.as_p}}
+    
+    <button type="submit" class = "btn btn-primary">저장</button>
+</form>
+
+
+
+ {% endblock %}

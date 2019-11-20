@@ -1,0 +1,19 @@
+{% extends 'bookmark\base.html' %}
+
+{% block title %} Write {% endblock %}
+
+
+{% block content %} 
+ 
+<br><br>
+
+<form action ="" method="post">
+        {% csrf_token %}
+        {{ form.as_p}}
+    
+    <button type="submit" class = "btn btn-primary">저장</button>
+</form>
+
+
+
+ {% endblock %}
