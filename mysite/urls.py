@@ -24,6 +24,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from django.contrib.auth import views #django.contrib.auth.views.logout 을 사용하기 위해
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),#보안을 위해 admin은 다른것으로 수정하여 배포
@@ -33,8 +34,9 @@ urlpatterns = [
     path('blog/', include('blog.urls')),# 방법1 # include 로 각 앱(home)의 urls를 읽어옴
     path('todo/', include('todo.urls')),
     path('bookmark/', include('bookmark.urls')),
+    path('poll/', include('poll.urls')),
     path('testapp/', include('testapp.urls')),
-    #path('', views.index),   #방법2 # home앱은 위에 등록하였으므로 생략. home앱의 view로 연결해줌
+    path('', views.HomeView.as_view(), name='home'),   #방법2 # home앱은 위에 등록하였으므로 생략. home앱의 view로 연결해줌
 ]
 
 # media #개발환경이 아닌경우 빈리스트가 반환됨. 즉 개발환경시에만 media 파일 서빙되도록 함

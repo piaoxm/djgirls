@@ -15,7 +15,9 @@ DEBUG = True  # 배포시 수정할 것. 보안상 중요
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 INSTALLED_APPS += [
-    'debug_toolbar',  # Debug_Toolbar
+    # 써드파티 앱
+    'debug_toolbar', 
+    'django_extensions', # ./manage.py shell_plus 사용 가능
 ]
 
 MIDDLEWARE += [

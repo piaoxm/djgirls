@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{# load widget_tweaks #}
+
+{% block title %}bookmark_form.html{% endblock %}
+
+{% block head_extra %}
+    {{ block.super }} #부모의 내용을 살릴 경우
+{% endblock %}
+
+
+{% block content %}
+
+    <h1>Bookmark Create/Update - 접속자 :{{user}} 님</h1>
+    <p class="font-italic">This is a creation or update form for your bookmark.</p>
+
+    {% if form.errors %}
+    <div class="alert alert-danger">
+        <div class="font-weight-bold">Wrong! Please correct the error(s) below.</div>
+        {{ form.errors }}
+    </div>
+    {% endif %}
+
+    <form action="." method="post" enctype="multipart/form-data">
+        <fieldset>    
+            <legend>작성 Form</legend>
+            {% csrf_token %}
+
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {{ error }}
+                </div>
+            {% endfor %}
+
+            <!-- hidden fields는 위젯만 렌더링 -->
+            {% for field in form.hidden_fields %}
+                {{ field }}
+            {% endfor %}
+        
+            <!-- visible fields는 모든 요소 렌더링 -->
+            {% for field in form.visible_fields %}
+                <div class="form-group">
+                    <label for="{{field.id_for_label}}">{{field.label}}</label> {{field}}
+                    {% for error in field.errors %}
+                        <span class="help-block">{{error}}</span>
+                    {% endfor %}        
+                </div>
+            {% endfor %}
+            <input type="submit" value="제출" class="btn btn-primary btn-lg" />
+        </fieldset>
+    </form>
+
+{% endblock %}
+

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'bookmark/base.html' %}
 
 {% block title %} list {% endblock %}
 
@@ -11,8 +11,9 @@
     <li>사이트 이름 | 주소(URL)</li>
 {% for bookmark in object_list %}
 <li>
-<a href="{% url 'bookmark:detail' bookmark.id %}"> {{ bookmark.title }} </a>| {{ bookmark.url }}
-
+<a href="{% url 'bookmark:detail' bookmark.id %}"> {{ bookmark.title }} </a>| {{ bookmark.url }} | 
+<a href="{% url 'bookmark:update' bookmark.id %}"> [ 수정 ] </a>
+<a href="{% url 'bookmark:delete' bookmark.id %}"> [ 삭제 ] </a>
 </li>
 {% endfor %}
 </ul>
