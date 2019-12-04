@@ -33,6 +33,7 @@ urlpatterns = [
     #path('accounts/logout/', views.logout, name='logout', kwargs={'next_page': '/'}),
     path('blog/', include('blog.urls')),# 방법1 # include 로 각 앱(home)의 urls를 읽어옴
     path('todo/', include('todo.urls')),
+    path('todoapi/', include('todoapi.urls')),
     path('bookmark/', include('bookmark.urls')),
     path('poll/', include('poll.urls')),
     path('testapp/', include('testapp.urls')),

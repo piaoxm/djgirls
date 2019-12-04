@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 
 #로그인관련 Redirect
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
-LOGIN_REDIRECT_URL = '/testapp/'  # 로그인후 자동으로 갈 경로
+LOGIN_REDIRECT_URL = '/'  # 로그인후 자동으로 갈 경로
 ACCOUNT_AUTHENTICATED_LOGOUT_REDIRECTS = True
-ACCOUNT_LOGOUT_REDIRECT_URL = '/testapp/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
 
@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'blog',
     'bookmark',
     'poll',
+    'todoapi',
     'todo',
+
     'testapp',
     'member',
 
@@ -188,4 +190,9 @@ ACCOUNT_EMAIL_VERIFICATION = 'optional' #메일 유효성 인증이 필요한지
 SOCIALACCOUNT_AUTO_SIGNUP = False #디폴트 값은 True이며 SNS 공급자에서 넘겨받은 정보를 가지고 바로 회원가입시킨다. 부가정보를 입력 받기 위해 False로 설정할 수 있다.
 ACCOUNT_SIGNUP_FORM_CLASS = 'member.forms.SignupForm' #회원가입 폼 클래스를 지정
 
-
+############## Rest Framework #################
+# REST_FRAMEWORK = {
+#     'DEFAULT_PAGINATION_CLASSES' : ('rest_framework.pagination.PageNumberPagination',),# Pagination을 적용
+#     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',# Request GET https://localhost:8000/api/post/?limit=2&offset=3
+#     'PAGE_SIZE': 3,# Pagination을 적용
+# }
